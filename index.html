@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f6efdf"><meta name="description" content="Диалектика — философская игра по диалогам Платона. Спорь с Сократом, открывай главы и развивай мышление.">
-<title>ДИАЛЕКТИКА — Сократ</title>
+<title>ДИАЛЕКТИКА — Афины · Сократ</title>
 <style>
 
 :root{--paper:#efe6d5;--paperlite:#faf6ec;--white:#fffcf5;--ink:#28343d;--ink2:#3d4c55;--muted:#776d61;--gold:#9c6b33;--goldhi:#8d5c29;--blue:#2d5065;--sea:#568071;--line:#d9cbb5;--radius:17px;color-scheme:light}
@@ -140,6 +140,40 @@ body[data-screen='game'] .feedback .socratic-counter{margin-bottom:10px}
 .reflection-point strong{display:block;color:#70512f;margin-bottom:3px}
 .end .reflection-point{text-align:left}
 @media(max-width:640px){.belief-opening{padding:16px}.belief-opening h2{font-size:24px}.reflect-card{padding:14px;margin:14px 0}.reflect-card h3{font-size:21px}.reflect-card .choice{min-height:62px}}
+
+/* v1.0: Raphael-inspired Athens, actual argument memory, interactive exercises */
+.athens-board{position:relative;isolation:isolate;overflow:hidden;border:1px solid #bfa77f;border-radius:18px;background:radial-gradient(ellipse at 45% 46%,#f8f0dd,#d9c8a8 85%);min-height:300px;margin:14px 0 22px;box-shadow:inset 0 0 55px #8f76402b,0 9px 25px #63503015}
+.athens-board::before{content:"";position:absolute;inset:0;opacity:.16;background:repeating-linear-gradient(0deg,transparent 0 45px,#9f8557 46px 47px,transparent 48px 90px);pointer-events:none}
+.athens-board .board-title{position:absolute;top:15px;left:20px;font:600 18px Georgia,serif;letter-spacing:.12em;color:#79582e;z-index:1}
+.athens-board .board-sub{position:absolute;top:40px;left:20px;font-size:11px;color:#8c7553;z-index:1}
+.route-lines{position:absolute;inset:18px 12px 10px;width:calc(100% - 24px);height:calc(100% - 28px);pointer-events:none;overflow:visible}
+.athens-point{position:absolute;display:flex;flex-direction:column;align-items:center;gap:3px;transform:translate(-50%,-50%);border:1px solid #ab936c;border-radius:14px;background:#fff8e8ed;color:#433c33;padding:11px 13px;min-width:125px;box-shadow:0 4px 0 #b8a47e80;font-size:13px;font-weight:800;transition:transform .15s ease;z-index:2;touch-action:manipulation}
+.athens-point:active{transform:translate(-50%,-46%)}.athens-point .landmark{font-size:27px;line-height:1.2}
+.athens-point small{font-size:10px;font-weight:500;color:#796c5e}.athens-point:disabled{opacity:.7;cursor:not-allowed;background:#eae2d2}
+.athens-point.first{left:20%;top:45%}.athens-point.second{left:53%;top:35%}.athens-point.third{left:78%;top:69%}
+.trials-intro{display:flex;gap:12px;align-items:center;margin:17px 0 12px}.trials-intro h3{margin:0;font:600 22px Georgia,serif}.trials-intro small{font-size:12px;color:#736857}
+.trial-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:12px 0 20px}
+.trial-card{border:1px solid #d3c0a1;border-radius:14px;padding:15px;background:#fffaf0;display:flex;flex-direction:column;gap:9px;min-width:0}
+.trial-card .trial-icon{font-size:26px}.trial-card h4{font:600 18px Georgia,serif;margin:0}.trial-card p{font-size:12px;color:#716250;line-height:1.5;margin:0;flex:1}.trial-card .mini-button{margin-top:3px;width:100%}
+.trial-frame{border:1px solid #d3bc95;background:#fffbf2;border-radius:16px;padding:18px 19px;margin-top:14px}.trial-frame h3{font:600 25px Georgia,serif;margin:8px 0 11px;color:#304958}.trial-frame p{font-size:14px;line-height:1.65;color:#695c4e}.trial-stage{font-size:12px;letter-spacing:.07em;color:#987037;font-weight:700}
+.trial-frame .choice{width:100%;text-align:left;background:#fffefa}.trial-frame .choice.selected{background:#e9f2eb;border-color:#8caf9e}
+.trial-review{background:#f0f5ed;border:1px solid #c2d4c2;border-radius:11px;padding:14px;margin:12px 0 14px;font-size:14px;line-height:1.6;color:#3f594a}.trial-review strong{display:block;margin-bottom:6px;color:#34584b}
+.trial-trail{border-left:3px solid #c6a16b;padding:7px 12px;margin-bottom:15px;font-size:13px;color:#67563e}
+.skills-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:16px 0}.skill-card{background:#fcf4e3;border:1px solid #d4bfa0;padding:15px;border-radius:12px}.skill-card h4{margin:0 0 7px;font:600 18px Georgia,serif}.skill-card p{font-size:12px;color:#74634e;line-height:1.5;min-height:56px}.skill-pips{letter-spacing:.19em;color:#986e36;font-weight:900}.skill-card .mini-button{width:100%;margin-top:9px}
+.skill-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.skill-actions button{flex:1;min-width:120px;padding:10px 9px;border:1px solid #8d7d60;background:#f7edd7;border-radius:10px;color:#5a4428;font-size:12px;font-weight:750;touch-action:manipulation}.skill-actions button:disabled{opacity:.45;cursor:not-allowed}
+.memory-card{border-left:4px solid #466b77;background:#edf2ee;border-radius:11px;padding:13px 15px;margin:14px 0;color:#36505a}.memory-card strong{display:block;font:600 16px Georgia,serif;margin:0 0 7px}.memory-card p{font-size:13px;line-height:1.58;margin:8px 0}.memory-card blockquote{margin:6px 0 9px;border-left:2px solid #b3c5b7;padding-left:12px;font-style:italic;line-height:1.55;font-size:13px}
+.memory-card .choices{margin-top:10px}.memory-card .choice{background:#fffdf7;text-align:left}.memory-answer{padding:9px 11px;border-radius:8px;background:#f8fbf6;color:#435d52;margin:10px 0}
+.insight-journal{border:1px solid #d5c09b;background:#fffaf0;border-radius:14px;padding:15px;margin:17px 0}.insight-journal h3{font:600 19px Georgia,serif;margin:0 0 8px}.insight-journal textarea{width:100%;min-height:96px;resize:vertical;border:1px solid #c8b79d;padding:12px;border-radius:10px;background:#fffefa;color:#2d3a3a}.insight-journal p{font-size:12px;color:#786b5b;line-height:1.5}.insight-journal button{margin-top:10px}
+.athens-label{font-size:12px;text-align:center;color:#806e56;margin:-12px 0 15px}
+@media(max-width:850px){.trial-grid,.skills-list{grid-template-columns:1fr}.skill-card p{min-height:0}.athens-board{min-height:290px}}
+@media(max-width:520px){.athens-board{min-height:320px}.athens-board .board-title{font-size:15px}.athens-point{min-width:104px;padding:9px 6px;font-size:11px}.athens-point .landmark{font-size:22px}.athens-point small{font-size:9px}.athens-point.first{left:21%;top:42%}.athens-point.second{left:70%;top:39%}.athens-point.third{left:52%;top:75%}.trial-frame{padding:14px}.trial-frame h3{font-size:23px}.skill-actions button{min-width:unset;flex-basis:44%}}
+
+
+body[data-screen='trial'] .hero-cta{display:none}
+body[data-screen='trial'] .fresco{height:110px;min-height:0;aspect-ratio:auto}
+body[data-screen='trial'] .banner-copy{padding:13px 20px}
+body[data-screen='trial'] .banner-copy h1{font-size:23px}
+@media(max-width:800px){body[data-screen='trial'] .fresco{display:none}body[data-screen='trial'] .banner-copy{padding:12px 16px}}
 </style>
 </head>
 <body>
@@ -427,12 +461,92 @@ function renderBeliefHistory(st){
  return html+'</div></section>';
 }
 
-const ACHIEVEMENTS=[['first','🗣️','Первый аргумент','Заверши один раунд'],['reflection','🪞','Первое сомнение','Пройди одно испытание убеждения'],['reflections5','🧭','Пять проверок','Пройди пять испытаний убеждения'],['euthyphro','⚖️','Мастер определения','Пройди «Евтифрон»'],['laches','🛡️','Смелость сомневаться','Пройди «Лахет»'],['crito','🔑','Голос совести','Пройди «Критон»'],['respect','🏛️','Друг Сократа','Достигни расположения 70'],['deep','🦉','Искатель истины','Набери 35 очков понимания']];
+
+// Three self-contained philosophical workshops; the player evaluates reasons, not rote facts.
+const TRIALS=[
+ {id:'definition',icon:'🏛️',title:'Мастерская определений',location:'Агора',unlock:3,desc:'Собери понятие и проверь, не подменяет ли оно определение примером.',reward:'lens',rounds:[
+  {question:'Что годится в качестве начала определения?',options:[['Благочестие — это осуждение виновного родственника.','Это поступок Евтифрона, а не общее свойство. Пример не даёт критерия для остальных случаев.'],['Благочестие — способ поступать по отношению к справедливости и богам.','Ты предложил общую область, но ещё не отделил благочестие от соседних качеств.'],['Благочестие — следовать унаследованным обычаям полиса.','Традиция даёт общий ориентир, но можно ли назвать благочестивым обычай, если он несправедлив?' ]]},
+  {question:'Как уточнить определение, чтобы оно не стало списком примеров?',options:[['Назвать общее основание, по которому поступок входит в понятие.','Хороший метод. Осталось показать, что это основание не круговое.'],['Перечислить как можно больше правильных ритуалов.','Большое число примеров не устраняет вопрос о едином свойстве.'],['Сослаться на самый древний обычай.','Древность может объяснять традицию, но не автоматически правоту.']]},
+  {question:'Проверка Сократа: что делать с трудным контрпримером?',options:[['Объявить контрпример бессмысленным.','Так мы защищаем формулу от любой проверки, а не ищем истину.'],['Пересмотреть границы понятия и объяснить, почему.','Это честная проверка определения: объяснить, что в нём не работает.'],['Оставить исключение, уточнив, почему оно не разрушает правило.','Допустимо, но исключение требует независимого основания, а не удобной оговорки.']]}
+ ]},
+ {id:'fallacy',icon:'🧩',title:'Лабиринт выводов',location:'Палестра',unlock:9,desc:'Найди скрытую ошибку в рассуждении о богах и благочестии.',reward:'scroll',rounds:[
+  {question:'«Все благочестивые поступки одобряются богами. Значит, всё одобряемое богами благочестиво». Где логическая ловушка?',options:[['Вывод меняет местами условие и следствие.','Верно: из «если А, то Б» не следует «если Б, то А».'],['Посылка говорит только об одном направлении связи, а не об обратном.','Это существенный недостаток: обратный вывод требует дополнительной посылки. Его нельзя просто предположить.'],['Мы не проверили, одинаково ли боги понимают благочестие.','Это другой вопрос, связанный с согласованностью критерия. Но формальную ошибку обращения следствия он не устраняет.']]},
+  {question:'«Или Евтифрон прав всегда, или он совсем ничего не знает». Что здесь сомнительно?',options:[['Два крайних варианта исключают частичное знание.','Верно: ложная дилемма заставляет выбирать между крайностями.'],['Из одной ошибки нельзя заключить, что Евтифрон вообще ничего не знает.','Разумное возражение: единичная ошибка не уничтожает возможное знание в других вопросах.'],['Следует сначала выяснить, какую часть религиозных правил он способен объяснить.','Уточнение области знания полезно: оно также уводит от искусственного «всегда или никогда».']]}
+ ]},
+ {id:'defense',icon:'🛡️',title:'Защита тезиса',location:'Роща Академа',unlock:14,desc:'Ответь на три последовательных возражения Сократа.',reward:'lens',rounds:[
+  {question:'Ты говоришь: «Справедливость важнее дружбы». Сократ: «Значит, ради справедливости можно забыть верность?»',options:[['Дружба ценна, но не может оправдать причинение вреда другому.','Ты отделяешь верность от безусловного оправдания поступка. А кто определяет, где вред?'],['Сначала уточним, что ты называешь справедливостью.','Уточнение полезно; но не позволяет бесконечно уклоняться от трудного решения.'],['Предпочту всегда друга: иначе дружба ничего не значит.','Тогда верность становится абсолютной. Как быть, если друг требует несправедливости?']]},
+  {question:'Сократ возражает: «Но ведь ты можешь ошибаться в понимании справедливости».',options:[['Поэтому нужно допускать пересмотр собственной оценки.','Сомнение не отменяет ответственности за решение. Чем ты будешь проверять оценку?'],['Ошибаться может каждый, поэтому решать не следует.','Отказ от решения тоже имеет последствия.'],['До появления серьёзного возражения я буду действовать по лучшему доступному объяснению.','Практичный подход, но придётся определить, какое возражение считать достаточно серьёзным.']]},
+  {question:'Сократ: «Что останется от твоего тезиса после этих оговорок?»',options:[['Принцип и обязанность проверять его применение.','Это выдерживает критику лучше, чем безусловный лозунг, но сохраняет открытые вопросы.'],['Только моя личная уверенность.','Уверенность не заменяет оснований, особенно когда затронуты другие люди.'],['Вместо безусловного правила буду каждый раз сравнивать последствия.','Последствия важны, но их сравнение уже предполагает меру добра и вреда, которую тоже нужно обосновать.']]}
+ ]}
+];
+const SKILLS=[['logic','🔍','Логика','Открывает подсказки без расхода линзы. Число применений за главу растёт с уровнем.'],['rhetoric','🗣️','Риторика','Открывает четвёртый аргумент без расхода свитка.'],['dialectic','🪞','Диалектика','Помогает сравнивать ранние утверждения с текущими и замечать оговорки.']];
+const MEMORY_REPLIES=[
+ {text:'Я пересмотрел мнение: новый довод оказался сильнее.',reply:'Изменить убеждение — не поражение. Назови, какое основание его изменило.'},
+ {text:'Я уточнил понятие: эти утверждения относятся к разным случаям.',reply:'Уточнение возможно. Покажи границу, по которой различаются случаи.'},
+ {text:'Я пока оставлю напряжение открытым и проверю оба тезиса.',reply:'Признать открытый вопрос лучше, чем скрыть несогласованность. Вернёмся к нему.'}
+];
+function rememberTension(st,index){
+ const f=st.reflections||{},open=st.initialBelief,cur=f[index];
+ if(!cur)return null;
+ if(index===9&&open?.choice===0&&cur.text===SOCRATIC_TURNS[9].options[1].text)return{old:open.text,now:cur.text,where:'перед началом спора',why:'Ты начинал с одобрения богов, а теперь сомневаешься, достаточно ли его.'};
+ if(index===14&&f[9]?.type==='defend'&&cur.text===SOCRATIC_TURNS[14].options[1].text)return{old:f[9].text,now:cur.text,where:'второе испытание',why:'Ты ранее защищал божественное согласие как решающий критерий, а теперь ищешь независимое основание.'};
+ if(index===14&&open?.choice===0&&cur.text===SOCRATIC_TURNS[14].options[1].text)return{old:open.text,now:cur.text,where:'перед началом спора',why:'Первоначально одобрение богов было определением, теперь оно перестаёт быть основанием.'};
+ if(index===19&&open?.choice===2&&cur.text===SOCRATIC_TURNS[19].options[2].text)return{old:open.text,now:cur.text,where:'перед началом спора',why:'Твой прежний взгляд делал обряд и долг центральными, а сейчас сама идея служения подвергается сомнению.'};
+ return null;
+}
+function renderMemoryTest(st,index){
+ const tension=rememberTension(st,index);if(!tension)return'';
+ const answered=st.memoryReplies?.[index];
+ let html=`<section class="memory-card" id="memoryTest"><strong>🪞 Сократ помнит твои слова</strong><p>В ${escapeHtml(tension.where)} ты говорил:</p><blockquote>${escapeHtml(tension.old)}</blockquote><p>А сейчас:</p><blockquote>${escapeHtml(tension.now)}</blockquote><p>${escapeHtml(tension.why)} Как объяснишь изменение?</p>`;
+ if(answered)html+=`<div class="memory-answer"><strong>${escapeHtml(answered.text)}</strong><p>${escapeHtml(answered.reply)}</p></div>`;
+ else html+=`<div class="choices">${MEMORY_REPLIES.map((o,i)=>`<button class="choice" data-memory="${i}"><span class="num">${i+1}</span><span>${escapeHtml(o.text)}</span></button>`).join('')}</div>`;
+ return html+'</section>';
+}
+function chooseMemory(i){
+ const st=chapterState(),idx=st.step,tension=rememberTension(st,idx);
+ if(!tension||!st.answered||!st.reflections?.[idx]||st.memoryReplies?.[idx])return;
+ const reply=MEMORY_REPLIES[Number(i)];if(!reply)return;
+ st.memoryReplies||={};st.memoryReplies[idx]={...reply,old:tension.old,now:tension.now};
+ if(!practice()){s.insight+=2;const before=level(s.xp);s.xp+=8;awardLevels(before,level(s.xp));}
+ save();render();requestAnimationFrame(()=>document.getElementById('memoryTest')?.scrollIntoView({block:'start',behavior:'smooth'}));
+}
+function trialUnlocked(trial){const st=s.chapterState.euthyphro;return st.completed||st.legacyCompleted||st.step>=trial.unlock;}
+function startTrial(id){const t=TRIALS.find(v=>v.id===id);if(!t||!trialUnlocked(t))return;s.trial={id,step:0,answers:[],revealed:false,done:false};s.screen='trial';s.notice='';save();render();scrollToGame()}
+function trialAnswer(i){if(s.screen!=='trial'||!s.trial||s.trial.done||s.trial.revealed)return;const t=TRIALS.find(v=>v.id===s.trial.id),round=t?.rounds[s.trial.step];const n=Number(i);if(!round?.options[n])return;s.trial.answers.push(n);s.trial.revealed=true;save();render()}
+function trialNext(){if(s.screen!=='trial'||!s.trial?.revealed)return;const t=TRIALS.find(v=>v.id===s.trial.id);if(s.trial.step<t.rounds.length-1){s.trial.step++;s.trial.revealed=false;save();render();scrollToGame();return}s.trial.done=true;
+ if(!s.trialRewards[t.id]){s.trialRewards[t.id]=true;const before=level(s.xp);s.xp+=26;s.insight+=3;s.inv[t.reward]=(s.inv[t.reward]||0)+1;awardLevels(before,level(s.xp));checkAchievements()}
+ save();render();scrollToGame()}
+function renderTrial(){const t=TRIALS.find(v=>v.id===s.trial?.id);if(!t){s.screen='map';renderMap();return}
+ const st=s.trial;let html=`<div class="game-top"><button class="btn-quiet" data-nav="map">← На карту Афин</button><span class="kicker">Мастерская · ${t.location}</span></div><section class="trial-frame"><div class="trial-stage">${t.icon} ${escapeHtml(t.title)}</div><h3>${st.done?'Испытание завершено':`Шаг ${st.step+1} из ${t.rounds.length}`}</h3>`;
+ if(st.done){const lines=t.rounds.map((r,i)=>`<div class="trial-trail"><strong>${escapeHtml(r.question)}</strong><br>${escapeHtml(r.options[st.answers[i]][0])}<p class="tiny muted">${escapeHtml(r.options[st.answers[i]][1])}</p></div>`).join('');html+=`<p>Ты попробовал несколько способов рассуждения. Разбор каждого хода записан ниже. Подобные задачи помогают лучше замечать слабые места определений и выводов.</p>${lines}<div class="trial-review"><strong>${s.trialRewards[t.id]?'Испытание пройдено':'Тренировка'}</strong>При первом прохождении: +26 XP, +3 понимания и ${t.reward==='scroll'?'📜 свиток':'🔎 линза'}.</div><button class="primary" data-nav="map">Вернуться в Афины →</button>`}
+ else{const r=t.rounds[st.step];if(t.id==='definition'&&st.answers.length){html+=`<div class="trial-trail"><strong>Собираем определение</strong><p>${st.answers.map((n,i)=>escapeHtml(t.rounds[i].options[n][0])).join(' → ')}</p></div>`;}html+=`<p>${escapeHtml(r.question)}</p><div class="choices">${r.options.map((o,i)=>`<button class="choice ${st.revealed&&st.answers.at(-1)===i?'selected':''}" data-trial-answer="${i}" ${st.revealed?'disabled':''}><span class="num">${i+1}</span><span>${escapeHtml(o[0])}</span></button>`).join('')}</div>`;if(st.revealed){html+=`<div class="trial-review"><strong>Разбор выбранного хода</strong>${escapeHtml(r.options[st.answers.at(-1)][1])}</div><button class="primary" data-trial-next="1">${st.step===t.rounds.length-1?'Завершить испытание →':'Следующий ход →'}</button>`}}
+ html+='</section>';$('screen').innerHTML=html;
+}
+function upgradeSkill(id){const d=SKILLS.find(a=>a[0]===id);if(!d||s.skillPoints<1||s.skills[id]>=3)return;s.skillPoints--;s.skills[id]++;save();render();}
+function skillAction(id){if(s.screen!=='game'||practice())return;const st=chapterState(),r=chapter()?.rounds[st.step];if(!r||st.answered||!s.skills[id])return;
+ st.skillUses||={logic:0,rhetoric:0,dialectic:0};
+ if(st.skillUses[id] >= s.skills[id] || id==='logic'&&st.clue || id==='rhetoric'&&st.scrollUsed || id==='dialectic'&&st.comparison===st.step)return;
+ st.skillUses[id]++;
+ if(id==='logic'){st.clue=true;setNotice('Логика: найдено полезное уточнение к вопросу.')}
+ if(id==='rhetoric'){st.scrollUsed=true;setNotice('Риторика: открыт дополнительный аргумент без свитка.')}
+ if(id==='dialectic'){st.comparison=st.step;setNotice('Диалектика: вспомни свой прежний тезис и сравни его с вопросом.')}
+ save();render();}
+function renderSkillActions(st){if(practice()||st.answered)return'';const uses=st.skillUses||{logic:0,rhetoric:0,dialectic:0};
+ const opts=[['logic','🔍 Анализ',!st.clue],['rhetoric','🗣️ Новый ход',!st.scrollUsed],['dialectic','🪞 Сопоставить',st.comparison!==st.step&&!!(st.initialBelief||st.history.length)]];
+ const x=opts.filter(([id,t,ready])=>s.skills[id]&&ready&&uses[id]<s.skills[id]);if(!x.length)return'';
+ return `<div class="skill-actions">${x.map(([id,t])=>`<button data-skill-use="${id}">${t} · ${s.skills[id]-(uses[id]||0)} раз</button>`).join('')}</div>`;
+}
+function renderComparison(st,r){if(st.comparison!==st.step)return'';const prior=st.reflections?.[TURN_INDICES.filter(i=>i<st.step).at(-1)]?.text||st.history.at(-1)?.text||st.initialBelief?.text;
+ if(!prior)return'';return `<div class="memory-card"><strong>🪞 Сопоставление тезисов</strong><p>Раньше ты сказал:</p><blockquote>${escapeHtml(prior)}</blockquote><p>А теперь вопрос звучит так: «${escapeHtml(r.q)}»</p><p>Сохраняется ли твой тезис в новом случае? Что пришлось бы уточнить?</p></div>`}
+function renderDiaryEditor(ch){const note=s.diaryNotes?.[ch]||'';const c=CHAPTERS.find(x=>x.id===ch);return `<section class="insight-journal"><h3>✍️ Моя мысль после «${escapeHtml(c?.title||ch)}»</h3><p>Что тебя удивило? Что ты всё ещё не можешь решить? Эта запись хранится только в браузере и войдёт в экспорт прогресса.</p><textarea id="diaryInput" maxlength="2000" placeholder="Сегодня я понял…">${escapeHtml(note)}</textarea><button class="mini-button" data-save-diary="${ch}">Сохранить мысль</button></section>`}
+function saveDiary(ch){if(!CHAPTERS.some(c=>c.id===ch))return;const note=(document.getElementById('diaryInput')?.value||'').trim().slice(0,2000);s.diaryNotes[ch]=note;s.notice='Мысль сохранена в дневнике.';save();render();const b=document.querySelector('.insight-journal');if(b){const msg=document.createElement('p');msg.textContent='✓ Запись сохранена';msg.className='tiny muted';b.appendChild(msg)}}
+
+const ACHIEVEMENTS=[['first','🗣️','Первый аргумент','Заверши один раунд'],['reflection','🪞','Первое сомнение','Пройди одно испытание убеждения'],['reflections5','🧭','Пять проверок','Пройди пять испытаний убеждения'],['euthyphro','⚖️','Мастер определения','Пройди «Евтифрон»'],['laches','🛡️','Смелость сомневаться','Пройди «Лахет»'],['crito','🔑','Голос совести','Пройди «Критон»'],['respect','🏛️','Друг Сократа','Достигни расположения 70'],['deep','🦉','Искатель истины','Набери 35 очков понимания'],['trial','🧩','Мастер упражнений','Пройди первое испытание на карте'],['trials3','🏺','Три мастерские','Закончи все три испытания'],['skill','📖','Подмастерье диалектики','Развивай первый навык'],['memory','🪞','Верность мысли','Сопоставь два непростых тезиса']];
 const NAV=[['map','◈','Карта'],['game','⚔','Спор'],['codex','▤','Библиотека'],['journal','✍','Дневник'],['profile','♜','Награды']];
 const $=id=>document.getElementById(id);
 const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const initialChapter=()=>({step:0,answered:false,last:null,history:[],completed:false,clue:false,scrollUsed:false,initialBelief:null,belief:null,reflections:{}});
-function makeInitial(){return{xp:0,respect:35,insight:0,screen:'map',active:'euthyphro',mode:'choices',inv:{scroll:0,lens:0},badges:{},chapterState:Object.fromEntries(CHAPTERS.map(c=>[c.id,c.id==='euthyphro'?{...initialChapter(),depthVersion:1}:initialChapter()])),notice:'',draft:'',replay:null}}
+const initialChapter=()=>({step:0,answered:false,last:null,history:[],completed:false,clue:false,scrollUsed:false,initialBelief:null,belief:null,reflections:{},memoryReplies:{},skillUses:{logic:0,rhetoric:0,dialectic:0},comparison:-1});
+function makeInitial(){return{xp:0,respect:35,insight:0,screen:'map',active:'euthyphro',mode:'choices',inv:{scroll:0,lens:0},skills:{logic:0,rhetoric:0,dialectic:0},skillPoints:0,trialRewards:{},trial:null,diaryNotes:{},badges:{},chapterState:Object.fromEntries(CHAPTERS.map(c=>[c.id,c.id==='euthyphro'?{...initialChapter(),depthVersion:1}:initialChapter()])),notice:'',draft:'',replay:null}}
 function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&Number.isFinite(x.xp)&&x.chapterState&&x.inv){const d=makeInitial();
 // The expanded 25-episode Euthyphro has a new order. Keep lifetime XP, items,
 // completed later chapters and archive the old arguments instead of misplacing them.
@@ -444,12 +558,12 @@ if(old&&old.depthVersion!==1){
  if(x.screen==='game'&&x.active==='euthyphro')x.screen='map';
  x.notice='«Евтифрон» теперь состоит из 25 эпизодов. Опыт, предметы и прежние записи сохранены.';
 }
-return {...d,...x,inv:{...d.inv,...x.inv},chapterState:Object.fromEntries(CHAPTERS.map(c=>[c.id,{...initialChapter(),...(x.chapterState[c.id]||{})}]))}}}catch(e){console.warn('Save error',e)}return makeInitial()}
-let s=load();if(!CHAPTERS.some(c=>c.id===s.active))s.active='euthyphro';
+return {...d,...x,inv:{...d.inv,...x.inv},skills:{...d.skills,...x.skills},skillPoints:Number.isFinite(x.skillPoints)?x.skillPoints:Math.max(0,level(x.xp)-1),trialRewards:{...d.trialRewards,...x.trialRewards},diaryNotes:{...d.diaryNotes,...x.diaryNotes},chapterState:Object.fromEntries(CHAPTERS.map(c=>[c.id,{...initialChapter(),...(x.chapterState[c.id]||{})}]))}}}catch(e){console.warn('Save error',e)}return makeInitial()}
+let s=load();if(!CHAPTERS.some(c=>c.id===s.active))s.active='euthyphro';s.skills||={logic:0,rhetoric:0,dialectic:0};s.diaryNotes||={};s.trialRewards||={};if(s.screen==='trial'&&!TRIALS.some(t=>t.id===s.trial?.id))s.screen='map';
 // Previously saved sessions remain playable; past choices and earned rewards survive.
 for(const st of [s.chapterState.euthyphro, s.replay?.chapter==='euthyphro'?s.replay:null]){
  if(!st)continue;
- st.reflections ||= {};
+ st.reflections ||= {};st.memoryReplies||={};st.skillUses||={logic:0,rhetoric:0,dialectic:0};st.comparison??=-1;
  if(!st.initialBelief && (st.step>0||st.answered||st.completed||st.history.length)){
   st.initialBelief={text:'Я начал этот спор с вопроса, на который ещё ищу ответ.',choice:-1};
   st.belief ||= st.initialBelief.text;
@@ -467,12 +581,13 @@ function chapter(){return CHAPTERS.find(c=>c.id===s.active)}
 function available(index){return index===0||Boolean(s.chapterState[CHAPTERS[index-1].id].completed||s.chapterState[CHAPTERS[index-1].id].legacyCompleted)}
 function setNotice(msg){s.notice=msg;save()}
 function collectBadge(id){if(!s.badges[id])s.badges[id]=true}
-function checkAchievements(){if(CHAPTERS.some(c=>s.chapterState[c.id].history.length))collectBadge('first');for(const c of CHAPTERS)if(s.chapterState[c.id].completed)collectBadge(c.id);if(s.respect>=70)collectBadge('respect');if(s.insight>=35)collectBadge('deep');const r=s.chapterState.euthyphro.reflections||{};if(Object.keys(r).length)collectBadge('reflection');if(TURN_INDICES.every(i=>r[i]))collectBadge('reflections5')}
+function checkAchievements(){if(CHAPTERS.some(c=>s.chapterState[c.id].history.length))collectBadge('first');for(const c of CHAPTERS)if(s.chapterState[c.id].completed)collectBadge(c.id);if(s.respect>=70)collectBadge('respect');if(s.insight>=35)collectBadge('deep');const r=s.chapterState.euthyphro.reflections||{};if(Object.keys(r).length)collectBadge('reflection');if(TURN_INDICES.every(i=>r[i]))collectBadge('reflections5');if(Object.values(s.trialRewards||{}).some(Boolean))collectBadge('trial');if(TRIALS.every(t=>s.trialRewards?.[t.id]))collectBadge('trials3');if(Object.values(s.skills||{}).some(v=>v>0))collectBadge('skill');if(Object.values(s.chapterState.euthyphro.memoryReplies||{}).some(Boolean))collectBadge('memory')}
 function render(){checkAchievements();renderSide();document.body.dataset.screen=s.screen;const c=chapter();
 const go=CHAPTERS.find((c,i)=>available(i)&&!s.chapterState[c.id].completed);
 const hero=$('heroAction');if(go){hero.dataset.open=go.id;delete hero.dataset.nav;const st=s.chapterState[go.id];hero.textContent=(st.step?'Продолжить: ':'Начать: ')+go.title+' →';}
 else{delete hero.dataset.open;hero.dataset.nav='codex';hero.textContent='Открыть библиотеку →';}
-if(s.screen==='game'){$('heroEyebrow').textContent=`Глава ${c.num} · ${c.era}`;$('heroTitle').textContent=c.title;$('heroDesc').textContent=`${c.topic} · ${c.place}`;renderGame()}
+if(s.screen==='trial'){$('heroEyebrow').textContent='Мастерская мысли';$('heroTitle').textContent='Испытание разума';$('heroDesc').textContent='Практика рассуждения';renderTrial()}
+else if(s.screen==='game'){$('heroEyebrow').textContent=`Глава ${c.num} · ${c.era}`;$('heroTitle').textContent=c.title;$('heroDesc').textContent=`${c.topic} · ${c.place}`;renderGame()}
 else if(s.screen==='map'){$('heroEyebrow').textContent='Сезон I · Сократ';$('heroTitle').textContent='В поисках истины';$('heroDesc').textContent='Три истории. 45 эпизодов. Проверяй собственные убеждения.';renderMap()}
 else if(s.screen==='codex'){$('heroEyebrow').textContent='Записки мыслителя';$('heroTitle').textContent='Библиотека идей';$('heroDesc').textContent='Открытые идеи и награды.';renderCodex()}
 else if(s.screen==='journal'){$('heroEyebrow').textContent='Твой собственный путь';$('heroTitle').textContent='Дневник аргументов';$('heroDesc').textContent='Вспомни свои аргументы.';renderJournal()}
@@ -483,7 +598,18 @@ let inv=[];if(s.inv.scroll)inv.push(`<div class="item"><span class="emoji">📜<
 const st=chapterState(),active=s.screen==='game'&&!st.answered&&!st.completed;
 $('inventoryActions').innerHTML=active?`<button class="mini-button" data-item="scroll" ${s.inv.scroll&&!st.scrollUsed?'':'disabled'}>📜 Аргумент</button><button class="mini-button" data-item="lens" ${s.inv.lens&&!st.clue?'':'disabled'}>🔎 Подсказка</button>`:''}
 function heading(t,desc){return `<h2 class="section-title">${t}</h2>${desc?`<p class="section-desc">${desc}</p>`:''}`}
-function renderMap(){const finished=CHAPTERS.filter(c=>s.chapterState[c.id].completed).length;let html=heading('Выбери философский спор',`Пройдено ${finished} из 3 глав. Выбери следующую историю.`);html+='<div class="chapter-grid">';CHAPTERS.forEach((c,i)=>{const st=s.chapterState[c.id],can=available(i),progress=Math.min(st.step,c.rounds.length);html+=`<article class="chapter-card ${can?'':'locked'}"><div class="chapter-icon">${c.icon}</div><div class="chapter-meta">Глава ${c.num} · ${c.rounds.length} эпизодов</div><h3>${c.title}</h3><p><strong class="chapter-topic">${c.topic}</strong><br>${c.desc}</p><div class="chapter-btm"><small>${st.completed?'✓ Завершено':can?`${st.legacyCompleted?'Новая редакция · ':''}${progress}/${c.rounds.length} эпизодов`:'🔒 После предыдущей'}</small><button class="mini-button" data-${st.completed&&(s.replay?.chapter!==c.id||s.replay.completed)?'replay':'open'}="${c.id}" ${can?'':'disabled'}>${st.completed?(s.replay?.chapter===c.id&&!s.replay.completed?'Продолжить повтор':'↻ Повторить'):progress?'Продолжить':'Начать'} →</button></div></article>`});html+='</div>';$('screen').innerHTML=html}
+function renderMap(){
+ const finished=CHAPTERS.filter(c=>s.chapterState[c.id].completed).length;
+ let html=heading('Афины ждут',`Историй: ${finished}/3 · исследуй города и философские мастерские.`);
+ html+=`<section class="athens-board" aria-label="Карта философских Афин"><div class="board-title">ΑΘΗΝΑΙ · АФИНЫ</div><div class="board-sub">Путь от портика к размышлениям о законе</div><svg class="route-lines" viewBox="0 0 700 290" preserveAspectRatio="none" aria-hidden="true"><path d="M130 120 C220 40 285 70 375 110 S540 230 600 215" fill="none" stroke="#aa8252" stroke-width="4" stroke-linecap="round" stroke-dasharray="9 9" opacity=".7"/><path d="M0 240 Q230 160 700 265" fill="none" stroke="#c3b28f" stroke-width="3" opacity=".5"/></svg>`;
+ const places=[['🏛️','Царский портик','Знакомство с Сократом'],['🛡️','Палестра','Мужество и знание'],['🔑','Афинская тюрьма','Законы и совесть']];
+ CHAPTERS.forEach((c,i)=>{const can=available(i),st=s.chapterState[c.id];html+=`<button type="button" class="athens-point ${['first','second','third'][i]}" data-${st.completed?'replay':'open'}="${c.id}" ${can?'':'disabled'}><span class="landmark">${places[i][0]}</span>${places[i][1]}<small>${!can?'🔒 Закрыто':st.completed?'↻ Пройти снова':st.step?`▶ ${st.step}/${c.rounds.length}`:'Начать историю'}</small></button>`});
+ html+='</section><p class="athens-label">Выбери место на карте или главу ниже</p>';
+ html+='<div class="chapter-grid">';CHAPTERS.forEach((c,i)=>{const st=s.chapterState[c.id],can=available(i),progress=Math.min(st.step,c.rounds.length);html+=`<article class="chapter-card ${can?'':'locked'}"><div class="chapter-icon">${c.icon}</div><div class="chapter-meta">Глава ${c.num} · ${c.rounds.length} эпизодов</div><h3>${c.title}</h3><p><strong class="chapter-topic">${c.topic}</strong><br>${c.desc}</p><div class="chapter-btm"><small>${st.completed?'✓ Завершено':can?`${progress}/${c.rounds.length} эпизодов`:'🔒 После предыдущей'}</small><button class="mini-button" data-${st.completed?'replay':'open'}="${c.id}" ${can?'':'disabled'}>${st.completed?'↻ Повторить':progress?'Продолжить':'Начать'} →</button></div></article>`});html+='</div>';
+ html+='<div class="trials-intro"><div><h3>Философские мастерские</h3><small>Короткие испытания между беседами · награда только за первый проход</small></div></div><div class="trial-grid">';
+ TRIALS.forEach(t=>{const can=trialUnlocked(t),done=s.trialRewards[t.id];html+=`<article class="trial-card"><span class="trial-icon">${t.icon}</span><h4>${escapeHtml(t.title)}</h4><p>${escapeHtml(t.desc)}</p><span class="tiny muted">${escapeHtml(t.location)} · ${done?'✓ Пройдено':can?'Открыто':`После эпизода ${t.unlock} «Евтифрона»`}</span><button class="mini-button" data-trial="${t.id}" ${can?'':'disabled'}>${done?'Повторить':can?'Испытать себя':'🔒 Ещё закрыто'} →</button></article>`});
+ html+='</div>';$('screen').innerHTML=html;
+}
 function renderGame(){
  const c=chapter(), st=chapterState();
  if(st.completed){renderEnd();return}
@@ -494,6 +620,7 @@ function renderGame(){
  if(isDeep && !st.initialBelief && index===0 && !st.answered){renderBeliefOpening();return}
  let html=`<div class="game-top"><button class="btn-quiet" data-nav="map">← К карте</button><span class="kicker">Эпизод ${index+1} из ${c.rounds.length}</span></div><div class="progress-dots">${c.rounds.map((_,i)=>`<div class="dot ${i<index?'past':i===index?'current':''}"></div>`).join('')}</div>${act?`<div class="act-ribbon"><span class="act-name">${escapeHtml(act.name)}</span><span class="act-sub">${escapeHtml(act.sub)}</span></div>`:''}<div class="scene">${escapeHtml(r.scene)} · ${isDeep?'Платон, «Евтифрон» · ':''}${escapeHtml(r.ref)}</div><div class="quote"><div class="speaking">${isDeep?'Вопрос по диалогу Платона':'Сократ обращается к тебе'}</div>${escapeHtml(r.q)}</div>`;
  if(isDeep && st.initialBelief)html+=`<div class="belief-bar"><strong>Твоя гипотеза</strong>${escapeHtml(st.belief||st.initialBelief.text)}</div>`;
+ if(c.id==='crito'&&index===0&&s.chapterState.euthyphro?.initialBelief){const a=s.chapterState.euthyphro;const b=a.reflections?.[24]?.text||a.initialBelief.text;html+=`<div class="memory-card"><strong>🪞 Эхо прежнего спора</strong><p>В беседе об Евтифроне ты говорил:</p><blockquote>${escapeHtml(b)}</blockquote><p>Теперь Сократ предлагает испытать твой взгляд на справедливость в вопросе о законах Афин.</p></div>`;}
  if(practice())html+='<div class="replay-note">↻ Повторное прохождение · опыт и расположение не меняются.</div>';
  if(s.notice){html+=`<div class="notice">${escapeHtml(s.notice)}</div>`;s.notice=''}
  if(st.answered){
@@ -510,11 +637,13 @@ function renderGame(){
   if(act&&[4,9,14,19,24].includes(index))html+=`<div class="act-learn"><strong>Открытие этой части</strong>${escapeHtml(act.insight)}</div>`;
   html+=`<div class="gains">${practice()?'↻ Тренировочный раунд':`+${f.xp||0} XP · ${f.respect>=0?'+':''}${f.respect||0} расположение · +${f.insight||0} понимание`}</div></section>`;
   const turn=isDeep?SOCRATIC_TURNS[index]:null;
-  if(turn) html+=st.reflections?.[index]?renderReflectResult(turn,st.reflections[index]):renderReflectPrompt(turn,st);
-  if(!turn||st.reflections?.[index])html+=`<div class="next-row"><button class="primary" id="nextBtn">${index===c.rounds.length-1?'Завершить главу →':'Следующий эпизод →'}</button></div>`;
+  if(turn){html+=st.reflections?.[index]?renderReflectResult(turn,st.reflections[index]):renderReflectPrompt(turn,st);if(st.reflections?.[index])html+=renderMemoryTest(st,index);}
+  if((!turn||st.reflections?.[index])&&(!rememberTension(st,index)||st.memoryReplies?.[index]))html+=`<div class="next-row"><button class="primary" id="nextBtn">${index===c.rounds.length-1?'Завершить главу →':'Следующий эпизод →'}</button></div>`;
  } else {
   if(isDeep)html+='<div class="position-note">Здесь нет одного «правильного» ответа. Выбери позицию, которую тебе интереснее защищать.</div>';
   html+=`<div class="mode-switch"><button class="${s.mode==='choices'?'active':''}" data-mode="choices">☷ Готовые аргументы</button><button class="${s.mode==='free'?'active':''}" data-mode="free">✎ Свой ответ</button></div>`;
+  if(!practice())html+=renderSkillActions(st);
+  if(st.comparison===st.step)html+=renderComparison(st,r);
   if(!practice()&&(s.inv.scroll||s.inv.lens))html+=`<div class="in-battle-items">${s.inv.scroll?`<button class="mini-button" data-item="scroll" ${!st.scrollUsed?'':'disabled'}>📜 Свиток · ${s.inv.scroll}</button>`:''}${s.inv.lens?`<button class="mini-button" data-item="lens" ${!st.clue?'':'disabled'}>🔎 Линза · ${s.inv.lens}</button>`:''}</div>`;
   if(st.clue)html+=`<div class="notice">🔎 Подсказка: ${escapeHtml(r.hint)}</div>`;
   if(s.mode==='choices'){
@@ -536,6 +665,7 @@ function renderEnd(){
  let html=heading('Диалог завершён',`Ты прошёл «${c.title}» и можешь вернуться к изученным идеям.`);
  html+=`<div class="end"><h2>${outcome}</h2><p>${escapeHtml(c.summary)}</p><div class="end-stats"><span class="chip">Раундов: ${st.history.length}/${c.rounds.length}</span>${isDeep?`<span class="chip">Своих аргументов: ${st.history.filter(h=>h.source==='free').length}</span>`:`<span class="chip">Сильных ходов: ${st.history.filter(h=>h.power===2).length}</span>`}<span class="chip">Расположение: ${s.respect}/100</span></div><p>${practice()?'Это повторное прохождение. Теперь можно попробовать другие аргументы.':`Получено <strong style="color:#946b35">+45 XP</strong> и памятный предмет: <strong style="color:#946b35">${c.icon} ${c.reward}</strong>. Его описание открыто в библиотеке.`}</p><div class="next-row"><button class="primary" data-nav="${nextIndex<CHAPTERS.length?'map':'codex'}">${nextIndex<CHAPTERS.length?'К другим главам →':'Открыть библиотеку →'}</button><button class="mini-button" data-replay="${c.id}">↻ Повторить спор</button></div></div>`;
  if(isDeep)html+=renderBeliefHistory(st);
+ if(!practice())html+=renderDiaryEditor(c.id);
  $('screen').innerHTML=html;
 }
 function renderCodex(){let html=heading('Что ты узнал?', 'Здесь собираются открытия из пройденных глав.');
@@ -543,17 +673,22 @@ const e=s.chapterState.euthyphro, eSeen=e.step+(e.answered?1:0);
 html+=renderBeliefHistory(e);
 if(eSeen||e.completed||e.legacyCompleted){html+='<article class="codex-card act-codex"><div class="small-row">Сократ · Евтифрон</div><h3>Пять ступеней исследования</h3><p>Каждая ступень открывается, когда ты завершишь её последнюю беседу.</p><div class="act-list">';
 EUTHYPHRO_ACTS.forEach((a,i)=>{const next=EUTHYPHRO_ACTS[i+1]?.start??25;const known=eSeen>=next||e.completed;html+=`<div class="act-card ${known?'discovered':''}"><span>${escapeHtml(a.name)}</span><small>${known?escapeHtml(a.insight):`Откроется после эпизода ${next}`}</small>${known?`<em>Платон · ${a.ref}</em>`:''}</div>`});html+='</div></article>'}
+html+=`<div class="codex-card"><div class="small-row">Практикум Афин</div><h3>Найденные способы мыслить</h3><p>${TRIALS.filter(t=>s.trialRewards[t.id]).map(t=>escapeHtml(t.title)).join(' · ')||'Мастерские появятся по мере прохождения «Евтифрона».'}</p></div>`;
 html+='<div class="codex-grid">';CHAPTERS.forEach(c=>{const done=s.chapterState[c.id].completed;html+=`<article class="codex-card"><div class="small-row">${c.icon} · ${c.title} · ${done?'Прочитано':s.chapterState[c.id].legacyCompleted?'Есть прежнее прохождение':'Не открыто'}</div><h3>${c.topic}</h3>${done?`<p>${escapeHtml(c.summary)}</p><p><strong>Ключевые понятия:</strong> ${c.concepts.map(escapeHtml).join(', ')}.</p><p><strong>Реликвия:</strong> ${escapeHtml(c.reward)}.</p>`:`<p class="muted">${s.chapterState[c.id].legacyCompleted?'Ты уже проходил эту главу. Исследуй её углублённую версию, чтобы открыть полный конспект.':'Пройди эту главу, чтобы открыть конспект и терминологию.'}</p>`}</article>`});html+='</div>';$('screen').innerHTML=html}
-function renderJournal(){const beliefRecord=renderBeliefHistory(s.chapterState.euthyphro);const logs=[...(s.archivedEuthyphro?.history||[]).map((h,i)=>({...h,chap:'Евтифрон (первое прохождение)',chapterId:'euthyphro-old',order:i})),...CHAPTERS.flatMap(c=>s.chapterState[c.id].history.map((h,i)=>({...h,chap:c.title,chapterId:c.id,order:i})))];let html=heading('Дневник споров',`${logs.length} записей. Твои решения и аргументы.`);html+=beliefRecord;if(!logs.length)html+='<div class="empty">Ещё нет записей. Начни первую главу на карте.</div>';else {logs.reverse().forEach(h=>html+=`<div class="journal-row"><strong>${escapeHtml(h.chap)} · эпизод ${h.order+1} · ${escapeHtml(h.scene)}</strong><p>${escapeHtml(h.text)}</p>${h.note?`<p class="tiny muted">Свободная формулировка: ${escapeHtml(h.note)}</p>`:''}<div class="tiny muted">+${h.xp} XP · ${h.source==='free'?'свободный аргумент':'готовый аргумент'}</div></div>`)}$('screen').innerHTML=html}
+function renderJournal(){const beliefRecord=renderBeliefHistory(s.chapterState.euthyphro);const logs=[...(s.archivedEuthyphro?.history||[]).map((h,i)=>({...h,chap:'Евтифрон (первое прохождение)',chapterId:'euthyphro-old',order:i})),...CHAPTERS.flatMap(c=>s.chapterState[c.id].history.map((h,i)=>({...h,chap:c.title,chapterId:c.id,order:i})))];let html=heading('Дневник споров',`${logs.length} записей. Твои решения и аргументы.`);html+=beliefRecord;html+=renderDiaryEditor(s.active);if(s.chapterState.euthyphro.memoryReplies){const entries=Object.entries(s.chapterState.euthyphro.memoryReplies);if(entries.length)html+=`<section class="codex-card"><div class="small-row">Память Сократа</div><h3>Когда взгляды столкнулись</h3>${entries.map(([i,m])=>`<p><strong>Эпизод ${Number(i)+1}:</strong> ${escapeHtml(m.text)}</p><p class="tiny muted">${escapeHtml(m.reply)}</p>`).join('')}</section>`;}if(!logs.length)html+='<div class="empty">Ещё нет записей. Начни первую главу на карте.</div>';else {logs.reverse().forEach(h=>html+=`<div class="journal-row"><strong>${escapeHtml(h.chap)} · эпизод ${h.order+1} · ${escapeHtml(h.scene)}</strong><p>${escapeHtml(h.text)}</p>${h.note?`<p class="tiny muted">Свободная формулировка: ${escapeHtml(h.note)}</p>`:''}<div class="tiny muted">+${h.xp} XP · ${h.source==='free'?'свободный аргумент':'готовый аргумент'}</div></div>`)}$('screen').innerHTML=html}
 function renderProfile(){const done=CHAPTERS.filter(c=>s.chapterState[c.id].completed||s.chapterState[c.id].legacyCompleted).length;let html=heading('Путь философа',`Уровень ${level(s.xp)} · ${s.xp} XP · понимание ${s.insight} · завершено ${done}/3 главы.`);html+='<div class="achievement-grid">';ACHIEVEMENTS.forEach(([id,emoji,t,desc])=>html+=`<div class="achievement ${s.badges[id]?'':'locked'}"><span>${emoji}</span><div><strong>${t}</strong><small>${s.badges[id]?'✓ Получено':desc}</small></div></div>`);html+='</div>';
 html+=`<div class="codex-card" style="margin-top:15px"><div class="small-row">Герой</div><h3>Ученик диалога · ур. ${level(s.xp)}</h3><p>Опыт: ${s.xp} XP · Расположение Сократа: ${s.respect}/100</p><div class="small-row">Сумка мыслителя</div><p>📜 Свиток уточнения: ${s.inv.scroll} · 🔎 Линза сомнения: ${s.inv.lens}</p></div>`;
+
+html+=`<div class="codex-card" style="margin-top:15px"><div class="small-row">Школа мыслителя</div><h3>Навыки и способности</h3><p>Очков развития: <strong>${s.skillPoints}</strong>. Новое очко даётся за каждый новый уровень. Действия навыков можно использовать во время споров.</p><div class="skills-list">`;
+SKILLS.forEach(([id,icon,title,desc])=>{const lvl=s.skills[id]||0;html+=`<div class="skill-card"><h4>${icon} ${title}</h4><div class="skill-pips">${'●'.repeat(lvl)}${'○'.repeat(3-lvl)}</div><p>${desc}</p><button class="mini-button" data-upgrade="${id}" ${!s.skillPoints||lvl>=3?'disabled':''}>${lvl>=3?'Максимум':'Улучшить (+1)'}</button></div>`});
+html+='</div></div>';
 $('screen').innerHTML=html}
 function startReplay(id){const i=CHAPTERS.findIndex(c=>c.id===id);if(i<0||!s.chapterState[id].completed)return;s.replay={...initialChapter(),chapter:id};s.active=id;s.screen='game';s.notice='';s.draft='';save();render();scrollToGame()}
 function scrollToGame(){requestAnimationFrame(()=>{const el=$('screen');if(el)el.scrollIntoView({behavior:'auto',block:'start'})})}
 function scrollToFeedback(){requestAnimationFrame(()=>{const el=document.querySelector('.feedback');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})})}
 function openChapter(id){const i=CHAPTERS.findIndex(c=>c.id===id);if(i<0||!available(i))return;s.active=id;s.screen='game';s.notice='';s.draft='';render();window.scrollTo(0,0)}
-function navigate(to){if(to==='game'&&!available(CHAPTERS.findIndex(c=>c.id===s.active)))s.active=CHAPTERS[0].id;s.screen=to;s.notice='';render();window.scrollTo(0,0)}
-function awardLevels(before,after){if(after<=before)return;let items=[];for(let i=before+1;i<=after;i++){if(i===2||i%2===0){s.inv.scroll++;items.push('📜 Свиток уточнения')}else{s.inv.lens++;items.push('🔎 Линза сомнения')}}setNotice(`Новый уровень ${after}! В инвентарь добавлено: ${items.join(', ')}.`)}
+function navigate(to){if(to==='trial')return;if(to==='game'&&!available(CHAPTERS.findIndex(c=>c.id===s.active)))s.active=CHAPTERS[0].id;s.screen=to;s.notice='';render();window.scrollTo(0,0)}
+function awardLevels(before,after){if(after<=before)return;let items=[];for(let i=before+1;i<=after;i++){s.skillPoints=(s.skillPoints||0)+1;if(i===2||i%2===0){s.inv.scroll++;items.push('📜 Свиток уточнения')}else{s.inv.lens++;items.push('🔎 Линза сомнения')}}setNotice(`Новый уровень ${after}! В инвентарь добавлено: ${items.join(', ')}.`)}
 function answerChoice(index){
  const st=chapterState(),r=chapter().rounds[st.step];if(st.answered||!r)return;
  const isDeep=chapter().id==='euthyphro';
@@ -583,14 +718,14 @@ function answerFree(){
  }
 }
 function applyAnswer(a){const st=chapterState(),r=chapter().rounds[st.step];if(st.answered)return;if(!practice()){const before=level(s.xp);s.xp+=a.xp;s.respect=Math.min(100,Math.max(0,s.respect+a.respect));s.insight+=a.insight;awardLevels(before,level(s.xp))}st.last=a;st.answered=true;st.history.push({...a,scene:r.scene,ref:r.ref});s.draft='';checkAchievements();save();render();scrollToFeedback()}
-function next(){const st=chapterState();if(!st.answered)return;if(chapter().id==='euthyphro'&&SOCRATIC_TURNS[st.step]&&!st.reflections?.[st.step])return;st.answered=false;st.last=null;st.clue=false;st.scrollUsed=false;st.step++;s.notice='';if(st.step>=chapter().rounds.length)finishChapter();save();render();scrollToGame()}
+function next(){const st=chapterState();if(!st.answered)return;if(chapter().id==='euthyphro'&&SOCRATIC_TURNS[st.step]&&!st.reflections?.[st.step])return;if(chapter().id==='euthyphro'&&rememberTension(st,st.step)&&!st.memoryReplies?.[st.step])return;st.answered=false;st.last=null;st.clue=false;st.scrollUsed=false;st.step++;s.notice='';if(st.step>=chapter().rounds.length)finishChapter();save();render();scrollToGame()}
 function finishChapter(){const st=chapterState();if(st.completed)return;st.completed=true;st.step=chapter().rounds.length;if(practice()){s.notice='Тренировка завершена.';save();return}const before=level(s.xp);s.xp+=45;s.respect=Math.min(100,s.respect+3);awardLevels(before,level(s.xp));checkAchievements();s.notice=`Глава «${chapter().title}» завершена! Получено +45 XP.`;save()}
 function useItem(item){if(s.screen!=='game'||practice())return;const st=chapterState();if(st.answered||st.completed||st.step>=chapter().rounds.length)return;if(item==='scroll'&&s.inv.scroll>0&&!st.scrollUsed){s.inv.scroll--;st.scrollUsed=true;s.mode='choices';setNotice('Свиток израсходован. Открыт дополнительный аргумент ✦')}else if(item==='lens'&&s.inv.lens>0&&!st.clue){s.inv.lens--;st.clue=true;setNotice('Линза израсходована: открыта подсказка к вопросу.')}else return;render()}
-function exportProgress(){const blob=new Blob([JSON.stringify({app:'ДИАЛЕКТИКА / Сократ',version:4,exported:new Date().toISOString(),save:s},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='dialektika_progress.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200)}
+function exportProgress(){const blob=new Blob([JSON.stringify({app:'ДИАЛЕКТИКА / Сократ',version:5,exported:new Date().toISOString(),save:s},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='dialektika_progress.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200)}
 function reset(){if(!confirm('Сбросить все уровни, главы, предметы и дневник? Это действие нельзя отменить.'))return;s=makeInitial();save();render()}
 $('heroAction').addEventListener('click',function(event){event.preventDefault();if(this.dataset.nav){navigate(this.dataset.nav)}else{openChapter(this.dataset.open||'euthyphro')}});
 $('exportBtn').addEventListener('click',exportProgress);$('resetBtn').addEventListener('click',reset);
-document.addEventListener('click',event=>{const t=event.target.closest('button');if(!t)return;if(t.dataset.nav)navigate(t.dataset.nav);else if(t.dataset.open)openChapter(t.dataset.open);else if(t.dataset.replay)startReplay(t.dataset.replay);else if(t.dataset.belief!==undefined)chooseOpeningBelief(t.dataset.belief);else if(t.dataset.reflect!==undefined)chooseReflection(t.dataset.reflect);else if(t.dataset.jumpReflection!==undefined)document.getElementById('reflectCard')?.scrollIntoView({behavior:'smooth',block:'start'});else if(t.dataset.mode){s.mode=t.dataset.mode;render()}else if(t.dataset.item)useItem(t.dataset.item);else if(t.dataset.answer!==undefined)answerChoice(t.dataset.answer);else if(t.id==='freeSubmit')answerFree();else if(t.id==='nextBtn')next()});
+document.addEventListener('click',event=>{const t=event.target.closest('button');if(!t)return;if(t.dataset.nav)navigate(t.dataset.nav);else if(t.dataset.open)openChapter(t.dataset.open);else if(t.dataset.replay)startReplay(t.dataset.replay);else if(t.dataset.trial)startTrial(t.dataset.trial);else if(t.dataset.trialAnswer!==undefined)trialAnswer(t.dataset.trialAnswer);else if(t.dataset.trialNext)trialNext();else if(t.dataset.upgrade)upgradeSkill(t.dataset.upgrade);else if(t.dataset.skillUse)skillAction(t.dataset.skillUse);else if(t.dataset.memory!==undefined)chooseMemory(t.dataset.memory);else if(t.dataset.saveDiary)saveDiary(t.dataset.saveDiary);else if(t.dataset.belief!==undefined)chooseOpeningBelief(t.dataset.belief);else if(t.dataset.reflect!==undefined)chooseReflection(t.dataset.reflect);else if(t.dataset.jumpReflection!==undefined)document.getElementById('reflectCard')?.scrollIntoView({behavior:'smooth',block:'start'});else if(t.dataset.mode){s.mode=t.dataset.mode;render()}else if(t.dataset.item)useItem(t.dataset.item);else if(t.dataset.answer!==undefined)answerChoice(t.dataset.answer);else if(t.id==='freeSubmit')answerFree();else if(t.id==='nextBtn')next()});
 document.addEventListener('input',event=>{if(event.target.id==='freeText'){s.draft=event.target.value;save()}});
 render();
 })();
