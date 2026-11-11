@@ -1,0 +1,24 @@
+name: Import public-domain Raphael fresco
+on:
+  push:
+    paths:
+      - .github/workflows/import-fresco.yml
+permissions:
+  contents: write
+jobs:
+  import-art:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch original Raphael painting from Wikimedia Commons
+        run: |
+          mkdir -p assets
+          curl --fail --location --retry 3 --retry-delay 3 --user-agent 'Dialektika-education/2.0 (GitHub Pages educational artwork)' 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/The_School_of_Athens_by_Raffaello_Sanzio_da_Urbino_in_Vatican.jpg/1280px-The_School_of_Athens_by_Raffaello_Sanzio_da_Urbino_in_Vatican.jpg' --output assets/school-of-athens.jpg
+          file assets/school-of-athens.jpg
+          test "$(wc -c < assets/school-of-athens.jpg)" -gt 30000
+      - name: Commit image asset
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/school-of-athens.jpg
+          git diff --cached --quiet || (git commit -m 'Include public-domain Raphael fresco as local game asset' && git push origin HEAD:main)
