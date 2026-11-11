@@ -1,0 +1,27 @@
+{
+  "name": "Диалектика — философская RPG",
+  "short_name": "Диалектика",
+  "description": "Философская игра о Сократе по мотивам диалогов Платона",
+  "lang": "ru",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f6efdf",
+  "theme_color": "#f6efdf",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

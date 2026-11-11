@@ -310,3 +310,47 @@ html{scroll-padding-top:16px}
 .fresco.art-unavailable{display:block!important;height:88px!important;min-height:88px!important;max-height:88px!important}
 .fresco.art-unavailable img{display:none!important}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+/* 2.0 — a focused reading experience, based on usability review */
+:root{font-synthesis:none}
+body{overscroll-behavior-y:none}
+body[data-screen="game"] .banner,
+body[data-screen="trial"] .banner,
+body[data-screen="court"] .banner,
+body[data-screen="event"] .banner,
+body[data-screen="dilemma"] .banner,
+body[data-screen="last"] .banner,
+body[data-screen="journal"] .banner,
+body[data-screen="concepts"] .banner,
+body[data-screen="tree"] .banner,
+body[data-screen="profile"] .banner,
+body[data-screen="codex"] .banner{display:none}
+body[data-screen="map"] .fresco{aspect-ratio:2.12/1;min-height:0}
+.fresco-image{width:100%;height:100%;display:block;object-fit:cover;object-position:center 44%}
+.content{min-width:0}
+#screen:focus{outline:none}
+.feedback:focus{outline:2px solid #8f764a;outline-offset:5px}
+.save-status{display:block;margin:6px 2px 1px;font-size:11px;color:#537163;line-height:1.4}
+.save-status.problem{color:#a35330}
+.save-alert{margin:0 0 14px;padding:12px 14px;border:1px solid #b2744d;border-radius:12px;background:#fff0da;color:#6c3f2e;font-size:13px;line-height:1.55}
+.save-alert[hidden]{display:none}
+#restoreBackupBtn[hidden]{display:none!important}
+.journal-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:#f6ebd7;border:1px solid #d9c6a3;border-radius:11px;margin:14px 0;padding:10px 12px;color:#664c32;font-weight:650;font-size:12px}
+.journal-controls .mini-button{padding:8px 11px;min-height:40px}
+.rest-button{margin-top:9px}
+body.large-type #screen{font-size:1.12em}
+body.large-type #screen .quote{font-size:1.35em!important;line-height:1.65!important}
+body.large-type #screen .choice{font-size:1.04em!important;line-height:1.62!important}
+body.large-type #screen .scene,body.large-type #screen .lesson,body.large-type #screen .position-merit,body.large-type #screen .socratic-counter,body.large-type #screen .feedback,body.large-type #screen .journal-row p{font-size:1.03em!important;line-height:1.72!important}
+button,summary{touch-action:manipulation}
+@media(max-width:800px){
+ .shell{padding-top:max(10px,env(safe-area-inset-top));padding-bottom:calc(95px + env(safe-area-inset-bottom))}
+ body[data-screen="game"] .content,body[data-screen="trial"] .content{padding-top:11px}
+ .top{padding:0 5px}
+ .game-top{align-items:center}
+ .feedback{scroll-margin-top:22px}
+ .next-row .primary{font-size:16px;min-height:54px}
+ .journal-controls .mini-button{width:100%}
+}
+@media(max-width:370px){.top-actions{right:0;max-width:calc(100vw - 26px)}.save-alert{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.choice,.primary,.mini-button{transition:none!important;transform:none!important}}

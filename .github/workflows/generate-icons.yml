@@ -1,0 +1,48 @@
+name: Generate installation icons
+on:
+  push:
+    paths:
+      - 'icons/icon.svg'
+permissions:
+  contents: write
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image library
+        run: python -m pip install --disable-pip-version-check pillow
+      - name: Draw matching PWA icons
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image,ImageDraw
+          out=Path('icons')
+          out.mkdir(exist_ok=True)
+          for n,filename in [(180,'apple-touch-icon.png'),(192,'icon-192.png'),(512,'icon-512.png')]:
+              im=Image.new('RGB',(n,n),(41,76,98))
+              draw=ImageDraw.Draw(im)
+              s=n/512
+              def pt(x,y):return (round(x*s),round(y*s))
+              cream=(245,231,202)
+              gold=(197,161,110)
+              w=max(2,round(12*s))
+              draw.line([pt(110,360),pt(402,360)],fill=gold,width=w)
+              draw.line([pt(128,195),pt(256,120),pt(384,195)],fill=cream,width=w,joint='curve')
+              draw.line([pt(110,205),pt(402,205)],fill=gold,width=w)
+              for x in (160,215,297,352):
+                  draw.line([pt(x,207),pt(x,352)],fill=cream,width=w)
+              draw.ellipse([pt(205,210),pt(307,312)],fill=(41,76,98),outline=gold,width=max(2,round(6*s)))
+              draw.line([pt(232,282),pt(256,235),pt(280,282)],fill=cream,width=max(2,round(8*s)),joint='curve')
+              draw.line([pt(242,270),pt(270,270)],fill=cream,width=max(2,round(7*s)))
+              im.quantize(colors=4,method=Image.Quantize.FASTOCTREE).save(out/filename,optimize=True)
+          PY
+      - name: Commit generated icons
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add icons/icon-192.png icons/icon-512.png icons/apple-touch-icon.png
+          git diff --cached --quiet || (git commit -m 'Finalize PWA installation icons' && git push origin HEAD:main)
